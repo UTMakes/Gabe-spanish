@@ -249,8 +249,7 @@
         <div class="closing-sub">Eso es todo por hoy — TiempoTV Iquitos</div>
       </div>
 
-      <!-- Subtitle bar -->
-      <div class="subtitle-bar" id="subtitleBar"></div>
+
 
       <!-- Lower third ticker -->
       <div class="lower-third">
@@ -353,20 +352,7 @@
       [185, 195],  // 6: Closing
     ];
 
-    // Subtitle cues: [startSec, endSec, text]
-    const SUBTITLES = [
-      [1, 8, "Buenos días. Este es el tiempo en Iquitos, una de las ciudades de Perú."],
-      [10, 20, "En este momento, tenemos vientos de 3 km/h en dirección norte, calidad del aire moderada."],
-      [30, 42, "La sensación térmica es de 30 °C, con vientos del norte a 3 km/h…"],
-      [43, 55, "…y un nivel de humedad del 83%."],
-      [60, 75, "Para las próximas horas, se prevé un 31% de probabilidad de lluvia…"],
-      [76, 90, "…seguido de cielos parcialmente nublados, con temperaturas entre 24 y 27 °C."],
-      [95, 115, "La probabilidad de lluvia es del 31%, lo que nos indica que, a diferencia de Lima, hay más posibilidades de que se produzcan chubascos o tormentas."],
-      [116, 130, "Por lo tanto, te recomiendo llevar un paraguas si tienes pensado salir; si no, quédate en casa y mantente a salvo."],
-      [135, 155, "Recuerda que en Iquitos pueden producirse chubascos o tormentas dependiendo de la humedad, y también habrá mucha humedad durante toda la semana."],
-      [160, 175, "En Iquitos pueden producirse chubascos o tormentas. Habrá mucha humedad durante toda la semana."],
-      [186, 195, "Eso es todo por hoy. ¡Que tengas un buen día!"],
-    ];
+
 
     // ===== DOM REFS =====
     const screen         = document.getElementById('broadcastScreen');
@@ -384,7 +370,7 @@
     const btnSkipFwd     = document.getElementById('btnSkipFwd');
     const btnSpeed       = document.getElementById('btnSpeed');
     const btnFullscreen  = document.getElementById('btnFullscreen');
-    const subtitleBar    = document.getElementById('subtitleBar');
+
     const rainLayer      = document.getElementById('rainLayer');
     const cloudLayer     = document.getElementById('cloudLayer');
     const broadcastTime  = document.getElementById('broadcastTime');
@@ -469,9 +455,6 @@
         activateSegment(newSeg);
       }
 
-      // Subtitles
-      updateSubtitles();
-
       // Atmospheric effects
       updateAtmosphere();
 
@@ -489,21 +472,6 @@
       });
     }
 
-    function updateSubtitles() {
-      let text = '';
-      for (const cue of SUBTITLES) {
-        if (currentTime >= cue[0] && currentTime <= cue[1]) {
-          text = cue[2];
-          break;
-        }
-      }
-      if (text) {
-        subtitleBar.textContent = text;
-        subtitleBar.classList.add('visible');
-      } else {
-        subtitleBar.classList.remove('visible');
-      }
-    }
 
     function updateAtmosphere() {
       // Show rain during rain segments (4, 5)
