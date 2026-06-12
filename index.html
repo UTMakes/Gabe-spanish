@@ -1,1 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reporte del tiempo en Iquitos, Perú — pronóstico animado con condiciones actuales, temperatura, humedad y probabilidad de lluvia.">
+  <title>El Tiempo en Iquitos — Reporte Meteorológico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1>🌤️ Reporte del Tiempo — Iquitos, Perú</h1>
+    <p>Pronóstico animado en vivo</p>
+  </header>
+
+  <!-- Video Wrapper -->
+  <div class="video-wrapper" id="videoWrapper">
+
+    <!-- ========== BROADCAST SCREEN ========== -->
+    <div class="broadcast-screen" id="broadcastScreen">
+
+      <!-- Atmospheric layers -->
+      <div class="rain-layer" id="rainLayer"></div>
+      <div class="cloud-layer" id="cloudLayer">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+      </div>
+
+      <!-- Top bar -->
+      <div class="top-bar">
+        <div class="live-badge"><div class="live-dot"></div> EN VIVO</div>
+        <div class="broadcast-time" id="broadcastTime">06:00 AM</div>
+      </div>
+
+      <!-- Channel logo -->
+      <div class="channel-logo">
+        <div class="logo-icon">⛅</div>
+        <span>TiempoTV</span>
+      </div>
+
+      <!-- ====== SEGMENT 0: Intro ====== -->
+      <div class="segment seg-intro active" data-seg="0">
+        <div class="city-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+          Iquitos, Perú
+        </div>
+        <div class="greeting">Buenos días</div>
+        <div class="subtitle">Este es el tiempo en <em>Iquitos</em>, una de las ciudades de Perú</div>
+        <div class="map-container">
+          <svg class="peru-outline" viewBox="0 0 200 120">
+            <path d="M60,10 L80,5 L110,8 L130,20 L140,45 L135,70 L120,90 L100,105 L75,110 L55,95 L45,70 L50,40 Z"
+                  fill="none" stroke="rgba(56,189,248,0.3)" stroke-width="1.5"/>
+          </svg>
+          <div class="map-dot"></div>
+          <div class="map-label">IQUITOS</div>
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 1: Current Conditions ====== -->
+      <div class="segment seg-conditions" data-seg="1">
+        <div class="section-label">⚡ Condiciones Actuales</div>
+        <div class="conditions-grid">
+          <div class="condition-card">
+            <span class="card-icon">💨</span>
+            <div class="card-label">Viento</div>
+            <div class="card-value">3 km/h</div>
+            <div class="card-detail">Dirección Norte</div>
+          </div>
+          <div class="condition-card">
+            <span class="card-icon">🌬️</span>
+            <div class="card-label">Calidad del Aire</div>
+            <div class="card-value">Moderada</div>
+            <div class="card-detail">Índice AQI</div>
+          </div>
+          <div class="condition-card">
+            <span class="card-icon">🌡️</span>
+            <div class="card-label">Sensación</div>
+            <div class="card-value">30 °C</div>
+            <div class="card-detail">Térmica</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 2: Temperature ====== -->
+      <div class="segment seg-temperature" data-seg="2">
+        <div class="temp-main">
+          <span class="temp-number">30</span><span class="temp-unit">°C</span>
+          <div class="temp-label">Sensación Térmica</div>
+        </div>
+        <div class="temp-details">
+          <div class="temp-detail-item">
+            <div class="detail-icon">🧭</div>
+            <div>
+              <div class="detail-value">Norte — 3 km/h</div>
+              <div>Dirección del viento</div>
+            </div>
+          </div>
+          <div class="temp-detail-item">
+            <div class="detail-icon">💧</div>
+            <div>
+              <div class="detail-value">83%</div>
+              <div>Humedad</div>
+            </div>
+          </div>
+        </div>
+        <div class="humidity-bar-container">
+          <div class="humidity-bar-label">
+            <span>Humedad</span>
+            <span>83%</span>
+          </div>
+          <div class="humidity-bar">
+            <div class="humidity-bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 3: Forecast ====== -->
+      <div class="segment seg-forecast" data-seg="3">
+        <div class="section-label">📅 Próximas Horas</div>
+        <div class="forecast-timeline">
+          <div class="forecast-hour">
+            <div class="hour-time">9 AM</div>
+            <span class="hour-icon">🌤️</span>
+            <div class="hour-temp">27°</div>
+            <div class="hour-rain">12%</div>
+          </div>
+          <div class="forecast-hour">
+            <div class="hour-time">12 PM</div>
+            <span class="hour-icon">⛅</span>
+            <div class="hour-temp">26°</div>
+            <div class="hour-rain">20%</div>
+          </div>
+          <div class="forecast-hour">
+            <div class="hour-time">3 PM</div>
+            <span class="hour-icon">🌦️</span>
+            <div class="hour-temp">25°</div>
+            <div class="hour-rain">31%</div>
+          </div>
+          <div class="forecast-hour">
+            <div class="hour-time">6 PM</div>
+            <span class="hour-icon">🌧️</span>
+            <div class="hour-temp">24°</div>
+            <div class="hour-rain">35%</div>
+          </div>
+          <div class="forecast-hour">
+            <div class="hour-time">9 PM</div>
+            <span class="hour-icon">🌙</span>
+            <div class="hour-temp">24°</div>
+            <div class="hour-rain">28%</div>
+          </div>
+          <div class="forecast-hour">
+            <div class="hour-time">12 AM</div>
+            <span class="hour-icon">🌙</span>
+            <div class="hour-temp">24°</div>
+            <div class="hour-rain">18%</div>
+          </div>
+        </div>
+        <div class="temp-range">
+          <div class="temp-range-labels">
+            <span class="low">24 °C</span>
+            <span class="high">27 °C</span>
+          </div>
+          <div class="temp-range-bar">
+            <div class="temp-range-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 4: Rain Probability ====== -->
+      <div class="segment seg-rain" data-seg="4">
+        <svg width="0" height="0" style="position:absolute">
+          <defs>
+            <linearGradient id="rainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#a78bfa"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="rain-gauge">
+          <svg viewBox="0 0 160 160">
+            <circle class="rain-gauge-bg" cx="80" cy="80" r="70"/>
+            <circle class="rain-gauge-fill" cx="80" cy="80" r="70"/>
+          </svg>
+          <div class="rain-gauge-text">
+            <div class="rain-percent">31%</div>
+            <div class="rain-label">Lluvia</div>
+          </div>
+        </div>
+        <div class="umbrella-icon">☂️</div>
+        <div class="rain-message">
+          A diferencia de Lima, hay más posibilidades de chubascos o tormentas.<br>
+          <strong>¡Lleva un paraguas si piensas salir!</strong>
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 5: Weekly Humidity ====== -->
+      <div class="segment seg-weekly" data-seg="5">
+        <div class="weekly-title">🌊 Humedad Semanal — Iquitos</div>
+        <div class="weekly-bars">
+          <div class="weekly-bar">
+            <div class="bar-val">85%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Lun</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">90%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Mar</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">78%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Mié</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">95%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Jue</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">82%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Vie</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">70%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Sáb</div>
+          </div>
+          <div class="weekly-bar">
+            <div class="bar-val">88%</div>
+            <div class="bar"></div>
+            <div class="bar-label">Dom</div>
+          </div>
+        </div>
+        <div class="weekly-note">
+          En Iquitos pueden producirse chubascos o tormentas dependiendo de la humedad.<br>
+          Habrá <strong>mucha humedad</strong> durante toda la semana.
+        </div>
+      </div>
+
+      <!-- ====== SEGMENT 6: Closing ====== -->
+      <div class="segment seg-closing" data-seg="6">
+        <div class="closing-emoji">☀️</div>
+        <div class="closing-text">¡Que tengas un buen día!</div>
+        <div class="closing-sub">Eso es todo por hoy — TiempoTV Iquitos</div>
+      </div>
+
+      <!-- Subtitle bar -->
+      <div class="subtitle-bar" id="subtitleBar"></div>
+
+      <!-- Lower third ticker -->
+      <div class="lower-third">
+        <div class="ticker-bar">
+          <span class="ticker-label">IQUITOS</span>
+          <div class="ticker-text">
+            <span class="ticker-text-inner">
+              Sensación térmica 30 °C &nbsp;•&nbsp; Viento N 3 km/h &nbsp;•&nbsp; Humedad 83% &nbsp;•&nbsp; Prob. lluvia 31% &nbsp;•&nbsp; Parcialmente nublado &nbsp;•&nbsp; Temp. 24-27 °C &nbsp;•&nbsp; Chubascos posibles &nbsp;•&nbsp;
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Play overlay -->
+      <div class="play-overlay" id="playOverlay">
+        <div class="play-btn-big">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+
+    </div><!-- /broadcast-screen -->
+
+    <!-- ========== CONTROLS ========== -->
+    <div class="controls-container">
+
+      <!-- Progress bar -->
+      <div class="progress-bar-wrapper" id="progressWrapper">
+        <div class="progress-track">
+          <div class="progress-buffer"></div>
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-markers" id="progressMarkers"></div>
+        <div class="progress-tooltip" id="progressTooltip">0:00</div>
+      </div>
+
+      <!-- Controls row -->
+      <div class="controls-row">
+        <div class="controls-left">
+          <!-- Play/Pause -->
+          <button class="ctrl-btn play-pause" id="btnPlayPause" title="Reproducir / Pausar">
+            <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+
+          <!-- Skip back 10s -->
+          <button class="ctrl-btn" id="btnSkipBack" title="Retroceder 10s">
+            <svg viewBox="0 0 24 24"><path d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/><text x="10" y="16" font-size="7" fill="currentColor" text-anchor="middle" font-weight="700">10</text></svg>
+          </button>
+
+          <!-- Skip forward 10s -->
+          <button class="ctrl-btn" id="btnSkipFwd" title="Avanzar 10s">
+            <svg viewBox="0 0 24 24"><path d="M12.01 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z"/><text x="14" y="16" font-size="7" fill="currentColor" text-anchor="middle" font-weight="700">10</text></svg>
+          </button>
+
+          <!-- Time display -->
+          <div class="time-display">
+            <span class="time-current" id="timeCurrent">0:00</span> / <span id="timeTotal">3:15</span>
+          </div>
+        </div>
+
+        <div class="controls-right">
+          <!-- Speed -->
+          <button class="speed-btn" id="btnSpeed" title="Velocidad">1x</button>
+
+          <!-- Volume -->
+          <div class="volume-control">
+            <button class="ctrl-btn" id="btnVolume" title="Volumen">
+              <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 8.14v7.72c1.48-.73 2.5-2.25 2.5-3.86zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+            </button>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+          </div>
+
+          <!-- Fullscreen -->
+          <button class="ctrl-btn" id="btnFullscreen" title="Pantalla completa">
+            <svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div><!-- /controls-container -->
+
+  </div><!-- /video-wrapper -->
+
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+  (() => {
+    'use strict';
+
+    // ===== CONSTANTS =====
+    const TOTAL_DURATION = 195; // 3:15 in seconds
+
+    // Segment timing: [startSec, endSec]
+    const SEGMENTS = [
+      [0,   30],   // 0: Intro
+      [30,  60],   // 1: Current Conditions
+      [60,  95],   // 2: Temperature / Feels Like
+      [95, 130],   // 3: Forecast
+      [130, 160],  // 4: Rain Probability
+      [160, 185],  // 5: Weekly Humidity
+      [185, 195],  // 6: Closing
+    ];
+
+    // Subtitle cues: [startSec, endSec, text]
+    const SUBTITLES = [
+      [1, 8, "Buenos días. Este es el tiempo en Iquitos, una de las ciudades de Perú."],
+      [10, 20, "En este momento, tenemos vientos de 3 km/h en dirección norte, calidad del aire moderada."],
+      [30, 42, "La sensación térmica es de 30 °C, con vientos del norte a 3 km/h…"],
+      [43, 55, "…y un nivel de humedad del 83%."],
+      [60, 75, "Para las próximas horas, se prevé un 31% de probabilidad de lluvia…"],
+      [76, 90, "…seguido de cielos parcialmente nublados, con temperaturas entre 24 y 27 °C."],
+      [95, 115, "La probabilidad de lluvia es del 31%, lo que nos indica que, a diferencia de Lima, hay más posibilidades de que se produzcan chubascos o tormentas."],
+      [116, 130, "Por lo tanto, te recomiendo llevar un paraguas si tienes pensado salir; si no, quédate en casa y mantente a salvo."],
+      [135, 155, "Recuerda que en Iquitos pueden producirse chubascos o tormentas dependiendo de la humedad, y también habrá mucha humedad durante toda la semana."],
+      [160, 175, "En Iquitos pueden producirse chubascos o tormentas. Habrá mucha humedad durante toda la semana."],
+      [186, 195, "Eso es todo por hoy. ¡Que tengas un buen día!"],
+    ];
+
+    // ===== DOM REFS =====
+    const screen         = document.getElementById('broadcastScreen');
+    const playOverlay    = document.getElementById('playOverlay');
+    const progressFill   = document.getElementById('progressFill');
+    const progressWrap   = document.getElementById('progressWrapper');
+    const progressTip    = document.getElementById('progressTooltip');
+    const markersEl      = document.getElementById('progressMarkers');
+    const timeCurrent    = document.getElementById('timeCurrent');
+    const timeTotal      = document.getElementById('timeTotal');
+    const btnPlayPause   = document.getElementById('btnPlayPause');
+    const iconPlay       = document.getElementById('iconPlay');
+    const iconPause      = document.getElementById('iconPause');
+    const btnSkipBack    = document.getElementById('btnSkipBack');
+    const btnSkipFwd     = document.getElementById('btnSkipFwd');
+    const btnSpeed       = document.getElementById('btnSpeed');
+    const btnFullscreen  = document.getElementById('btnFullscreen');
+    const subtitleBar    = document.getElementById('subtitleBar');
+    const rainLayer      = document.getElementById('rainLayer');
+    const cloudLayer     = document.getElementById('cloudLayer');
+    const broadcastTime  = document.getElementById('broadcastTime');
+
+    const segments = document.querySelectorAll('.segment');
+
+    // ===== STATE =====
+    let currentTime = 0;
+    let playing = false;
+    let speed = 1;
+    let lastFrame = null;
+    let animId = null;
+    let dragging = false;
+    let currentSegIndex = -1;
+
+    const speeds = [0.5, 1, 1.5, 2];
+    let speedIndex = 1;
+
+    // ===== INIT =====
+    timeTotal.textContent = formatTime(TOTAL_DURATION);
+    createRain();
+    createProgressMarkers();
+
+    // ===== PLAYBACK LOOP =====
+    function tick(ts) {
+      if (!playing) return;
+      if (lastFrame === null) lastFrame = ts;
+      const delta = (ts - lastFrame) / 1000 * speed;
+      lastFrame = ts;
+
+      currentTime = Math.min(currentTime + delta, TOTAL_DURATION);
+      updateUI();
+
+      if (currentTime >= TOTAL_DURATION) {
+        pause();
+        return;
+      }
+      animId = requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (currentTime >= TOTAL_DURATION) currentTime = 0;
+      playing = true;
+      lastFrame = null;
+      playOverlay.classList.add('hidden');
+      iconPlay.style.display = 'none';
+      iconPause.style.display = 'block';
+      animId = requestAnimationFrame(tick);
+    }
+
+    function pause() {
+      playing = false;
+      if (animId) cancelAnimationFrame(animId);
+      animId = null;
+      iconPlay.style.display = 'block';
+      iconPause.style.display = 'none';
+      if (currentTime >= TOTAL_DURATION) {
+        playOverlay.classList.remove('hidden');
+      }
+    }
+
+    function togglePlay() {
+      playing ? pause() : play();
+    }
+
+    // ===== UI UPDATE =====
+    function updateUI() {
+      // Progress bar
+      const pct = (currentTime / TOTAL_DURATION) * 100;
+      progressFill.style.width = pct + '%';
+
+      // Time display
+      timeCurrent.textContent = formatTime(currentTime);
+
+      // Segments
+      let newSeg = 0;
+      for (let i = SEGMENTS.length - 1; i >= 0; i--) {
+        if (currentTime >= SEGMENTS[i][0]) { newSeg = i; break; }
+      }
+      if (newSeg !== currentSegIndex) {
+        currentSegIndex = newSeg;
+        activateSegment(newSeg);
+      }
+
+      // Subtitles
+      updateSubtitles();
+
+      // Atmospheric effects
+      updateAtmosphere();
+
+      // Broadcast clock
+      updateClock();
+    }
+
+    function activateSegment(idx) {
+      segments.forEach((s, i) => {
+        if (i === idx) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+    }
+
+    function updateSubtitles() {
+      let text = '';
+      for (const cue of SUBTITLES) {
+        if (currentTime >= cue[0] && currentTime <= cue[1]) {
+          text = cue[2];
+          break;
+        }
+      }
+      if (text) {
+        subtitleBar.textContent = text;
+        subtitleBar.classList.add('visible');
+      } else {
+        subtitleBar.classList.remove('visible');
+      }
+    }
+
+    function updateAtmosphere() {
+      // Show rain during rain segments (4, 5)
+      if (currentTime >= 95 && currentTime <= 185) {
+        rainLayer.classList.add('active');
+      } else {
+        rainLayer.classList.remove('active');
+      }
+      // Show clouds during forecast+ segments
+      if (currentTime >= 60) {
+        cloudLayer.classList.add('active');
+      } else {
+        cloudLayer.classList.remove('active');
+      }
+    }
+
+    function updateClock() {
+      // Simulate broadcast time progressing from 6:00 AM
+      const mins = Math.floor(currentTime / 195 * 20); // 20 min span
+      const h = 6;
+      const m = mins;
+      const mStr = String(m).padStart(2, '0');
+      broadcastTime.textContent = `${h}:${mStr} AM`;
+    }
+
+    // ===== HELPERS =====
+    function formatTime(s) {
+      const mins = Math.floor(s / 60);
+      const secs = Math.floor(s % 60);
+      return mins + ':' + String(secs).padStart(2, '0');
+    }
+
+    function createRain() {
+      for (let i = 0; i < 60; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'raindrop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (0.6 + Math.random() * 0.6) + 's';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        drop.style.opacity = 0.3 + Math.random() * 0.5;
+        rainLayer.appendChild(drop);
+      }
+    }
+
+    function createProgressMarkers() {
+      // Add small markers at each segment boundary
+      for (let i = 1; i < SEGMENTS.length; i++) {
+        const marker = document.createElement('div');
+        marker.className = 'progress-marker';
+        const pct = (SEGMENTS[i][0] / TOTAL_DURATION) * 100;
+        marker.style.left = pct + '%';
+        markersEl.appendChild(marker);
+      }
+    }
+
+    // ===== PROGRESS BAR INTERACTION =====
+    function seekFromEvent(e) {
+      const rect = progressWrap.getBoundingClientRect();
+      const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
+      const pct = x / rect.width;
+      currentTime = pct * TOTAL_DURATION;
+      currentSegIndex = -1; // force segment update
+      updateUI();
+    }
+
+    progressWrap.addEventListener('mousedown', (e) => {
+      dragging = true;
+      seekFromEvent(e);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (dragging) seekFromEvent(e);
+
+      // Tooltip
+      const rect = progressWrap.getBoundingClientRect();
+      if (e.clientX >= rect.left && e.clientX <= rect.right &&
+          e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        const x = e.clientX - rect.left;
+        const pct = x / rect.width;
+        const t = pct * TOTAL_DURATION;
+        progressTip.textContent = formatTime(t);
+        progressTip.style.left = x + 'px';
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      dragging = false;
+    });
+
+    // Touch support
+    progressWrap.addEventListener('touchstart', (e) => {
+      dragging = true;
+      seekFromEvent(e.touches[0]);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (dragging) seekFromEvent(e.touches[0]);
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { dragging = false; });
+
+    // ===== BUTTON HANDLERS =====
+    playOverlay.addEventListener('click', togglePlay);
+    screen.addEventListener('click', (e) => {
+      if (e.target === screen || e.target.closest('.segment')) togglePlay();
+    });
+    btnPlayPause.addEventListener('click', togglePlay);
+
+    btnSkipBack.addEventListener('click', () => {
+      currentTime = Math.max(0, currentTime - 10);
+      currentSegIndex = -1;
+      updateUI();
+    });
+
+    btnSkipFwd.addEventListener('click', () => {
+      currentTime = Math.min(TOTAL_DURATION, currentTime + 10);
+      currentSegIndex = -1;
+      updateUI();
+    });
+
+    btnSpeed.addEventListener('click', () => {
+      speedIndex = (speedIndex + 1) % speeds.length;
+      speed = speeds[speedIndex];
+      btnSpeed.textContent = speed + 'x';
+    });
+
+    btnFullscreen.addEventListener('click', () => {
+      const wrapper = document.getElementById('videoWrapper');
+      if (!document.fullscreenElement) {
+        wrapper.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case ' ':
+        case 'k':
+          e.preventDefault();
+          togglePlay();
+          break;
+        case 'ArrowLeft':
+          currentTime = Math.max(0, currentTime - 5);
+          currentSegIndex = -1;
+          updateUI();
+          break;
+        case 'ArrowRight':
+          currentTime = Math.min(TOTAL_DURATION, currentTime + 5);
+          currentSegIndex = -1;
+          updateUI();
+          break;
+        case 'f':
+          btnFullscreen.click();
+          break;
+      }
+    });
+
+    // Initial UI
+    updateUI();
+
+  })();
+  </script>
+</body>
+</html>
